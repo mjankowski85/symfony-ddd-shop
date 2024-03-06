@@ -1,0 +1,28 @@
+{
+    "name": "profictacrd/recruitment",
+    "autoload": {
+        "psr-4": {
+            "Profitcatd\\Recruitment\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Profitcatd\\Recruitment\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Michal Styrylski",
+            "email": "michal.styrylski@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^10",
+        "phpmd/phpmd": "^2.13",
+        "phpstan/phpstan": "^1.10",
+        "spatie/laravel-ignition": "^2.0",
+        "symplify/easy-coding-standard": "^11.3",
+        "phpspec/prophecy": "~1.0",
+        "phpspec/prophecy-phpunit": "^2.1"
+    }
+}

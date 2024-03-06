@@ -1,0 +1,8 @@
+version: "3.7"
+
+services:
+    php:
+        volumes:
+            - .:/opt/app
+            - ./docker/php-fpm/php.ini:/usr/local/etc/php/conf.d/99-overrides.ini
+
