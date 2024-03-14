@@ -7,12 +7,13 @@ namespace Profitcatd\Recruitment\Tests\Support\MotherObjects\Shop\Domain;
 use Profitcatd\Recruitment\Shop\Domain as shopDomain;
 use Profitcatd\Recruitment\Shared\Domain\Identity\ShopId;
 use Profitcatd\Recruitment\Tests\Support\MotherObjects\Shared\Domain\Identity as mothersObjectIdentity;
-
+use Profitcatd\Recruitment\Shop\Domain\VerificationStatus;
 final class Shop
 {
     private function __construct(
         private ShopId $shopId,
-        private shopDomain\Name $name
+        private shopDomain\Name $name,
+        private shopDomain\VerificationStatus $status,
     ) {
     }
 

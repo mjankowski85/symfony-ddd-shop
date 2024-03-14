@@ -11,6 +11,7 @@ use Profitcatd\Recruitment\Shop\Domain\Events\ShopCreated;
 use Profitcatd\Recruitment\Shop\Domain\Events\ShopNameChanged;
 use Profitcatd\Recruitment\Tests\Support\Utils\DomainEventAssertion;
 use Profitcatd\Recruitment\Tests\Support\MotherObjects as motherObjects;
+use Profitcatd\Recruitment\Shop\Domain\VerificationStatus;
 
 final class ShopTest extends TestCase
 {
@@ -20,11 +21,13 @@ final class ShopTest extends TestCase
     {
         $id = motherObjects\Shared\Domain\Identity\ShopId::createAny();
         $name = motherObjects\Shop\Domain\Name::createAny();
+        $varificationStatus = VerificationStatus::TO_VERIFICATION;
 
-        $SUT = Shop::create($id, $name);
+        $SUT = Shop::create($id, $name, $varificationStatus);
 
         self::assertEquals($id, $SUT->id());
         self::assertEquals($name, $SUT->name());
+        self::assertEquals($varificationStatus, $SUT->varificationStatus());
     }
 
     public function testCreateWhenGivenValidParametersEventIsRaised(): void
@@ -82,4 +85,5 @@ final class ShopTest extends TestCase
         self::assertDomainEvent($expectedEvent, $events[0]);
         self::assertCount(1, $events);
     }
+
 }

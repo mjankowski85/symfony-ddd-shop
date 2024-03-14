@@ -11,6 +11,7 @@ abstract readonly class Event
     public function __construct(
         private Identifier $identifier,
         private string $eventName,
+        
         private int $version
     ) {
     }

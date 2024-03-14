@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Profitcatd\Recruitment\Shop\Domain\Events;
 
-use Profitcatd\Recruitment\Shop\Domain\Name;
 use Profitcatd\Recruitment\Shared\Domain\Identity\ShopId;
 use Profitcatd\Recruitment\Shared\Domain\ObjectTypes\Event;
+use Profitcatd\Recruitment\Shop\Domain\Name;
+use Profitcatd\Recruitment\Shop\Domain\VerificationStatus;
 
 final readonly class ShopCreated extends Event
 {
@@ -16,7 +17,8 @@ final readonly class ShopCreated extends Event
 
     public function __construct(
         public ShopId $id,
-        public Name $name
+        public Name $name,
+        public VerificationStatus $varificationStatus,
     ) {
         parent::__construct($id, self::EVENT_NAME, self::EVENT_VERSION);
     }
@@ -26,6 +28,7 @@ final readonly class ShopCreated extends Event
         return (string) json_encode([
             'id' => $this->id->value,
             'name' => $this->name->value,
+            'varificationStatus' => $this->varificationStatus,
         ]);
     }
 }

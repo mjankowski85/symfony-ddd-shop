@@ -13,21 +13,23 @@ final class Shop extends AggregateRoot
 {
     private function __construct(
         private ShopId $id,
-        private Name $name
+        private Name $name,
+        private VerificationStatus $verificationStatus,
     ) {
     }
 
-    public static function create(ShopId $id, Name $name): self
+    public static function create(ShopId $id, Name $name): static
     {
-        $shop = new self($id, $name);
-        $shop->raise(new ShopCreated($id, $name));
+        $varificationStatus = VerificationStatus::TO_VERIFICATION;
+        $shop = new static($id, $name, $varificationStatus);
+        $shop->raise(new ShopCreated($id, $name, $varificationStatus));
 
         return $shop;
     }
 
-    public static function recreate(ShopId $id, Name $name): self
+    public static function recreate(ShopId $id, Name $name, VerificationStatus $varificationStatus): static
     {
-        return new self($id, $name);
+        return new static($id, $name, $varificationStatus);
     }
 
     public function id(): ShopId
@@ -38,6 +40,11 @@ final class Shop extends AggregateRoot
     public function name(): Name
     {
         return $this->name;
+    }
+
+    public function varificationStatus(): VerificationStatus
+    {
+        return $this->verificationStatus;
     }
 
     public function changeName(Name $newName): void
@@ -51,4 +58,9 @@ final class Shop extends AggregateRoot
 
         $this->raise(new ShopNameChanged($this->id, $oldName, $newName));
     }
+
+    // public function setStatus(Status $status): void
+    // {
+
+    // }
 }
