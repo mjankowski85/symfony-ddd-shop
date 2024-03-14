@@ -8,6 +8,6 @@ final class NameIsTooShortException extends \Exception
 {
     public static function create(string $name): self
     {
-        return new self("Shop name {$name} is to long.");
+        return new self("Shop name {$name} is to short.");
     }
 }
